@@ -49,10 +49,10 @@
                             <div class="card-body">
                                  <div class="row">
                                     <div class="col-md-12 mb-3">
-                                        <p v-if="language=='English'">1. Did you visit a hospital, clinic or medical health facility in the past 14 days?</p>
-                                        <p v-if="language=='Tagalog'">1. Bumisita ka ba sa isang ospital, clinic o health facility noong nakaraang 14 na araw?</p>
-                                        <p v-if="language=='Hiligaynon'">1. Naka bisita ka bala sa hospital, klinika, o kun sa mga pasilidad medical sa nagligad nga 14 ka adlaw?</p>
-                                        <p v-if="language=='Bisaya'">1. Nakabisita ba ka ug hospital, clinic o balay tambalanan sa nilabay nga 14 ka adlaw?</p>
+                                        <p v-if="language=='English'">1. Did you visit a hospital, clinic or medical health facility in the past 10 days?</p>
+                                        <p v-if="language=='Tagalog'">1. Bumisita ka ba sa isang ospital, clinic o health facility noong nakaraang 10 na araw?</p>
+                                        <p v-if="language=='Hiligaynon'">1. Naka bisita ka bala sa hospital, klinika, o kun sa mga pasilidad medical sa nagligad nga 10 ka adlaw?</p>
+                                        <p v-if="language=='Bisaya'">1. Nakabisita ba ka ug hospital, clinic o balay tambalanan sa nilabay nga 10 ka adlaw?</p>
                                         <div class="custom-control custom-radio custom-control-inline ml-4">
                                             <input type="radio" id="yes1" name="one_question" class="custom-control-input" value="Yes" v-model="form.one_question"  >
                                             <label v-if="language=='English'" class="custom-control-label" for="yes1" >Yes</label>
@@ -89,10 +89,10 @@
                                         <span class="text-danger" v-if="errors.two_question">{{ errors.two_question[0] }}</span>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <p v-if="language == 'English'">3. Within the past 14 days, did a doctor or nurse, tell you to self-monitor, self-isolate, or self-quarantine because of concerns about COVID-19 infection?</p>
-                                        <p v-if="language == 'Tagalog'">3. Sa nagdaang 14 na araw, sinabi ba sa iyo ng isang doktor o nars na subaybayan ang sarili, ihiwalay sa sarili, o mai-quarantine dahil sa posibleng impeksyon ng COVID-19?</p>
-                                        <p v-if="language == 'Hiligaynon'">3. Sa nagligad nga 14 ka adlaw, nakapanugyan bala sa imo ang doctor o nars nga bantayan ang imo kaugalingun, mag separar sa isa ka lugar, o kun mag kuwarantin bangud sa kabalaka sa impeksyon sa CoViD-19?</p>
-                                        <p v-if="language == 'Bisaya'">3. Sa nilabay nga 14 ka adlaw,  aduna bay doctor or nurse, nag-ingon kanimo nga bantayan ang kaugalingon,  mag-inusara sa usa ka lugar or mag quarantine tungod sa kabalaka sa Covid 19 impeksyon? </p>
+                                        <p v-if="language == 'English'">3. Within the past 10 days, did a doctor or nurse, tell you to self-monitor, self-isolate, or self-quarantine because of concerns about COVID-19 infection?</p>
+                                        <p v-if="language == 'Tagalog'">3. Sa nagdaang 10 na araw, sinabi ba sa iyo ng isang doktor o nars na subaybayan ang sarili, ihiwalay sa sarili, o mai-quarantine dahil sa posibleng impeksyon ng COVID-19?</p>
+                                        <p v-if="language == 'Hiligaynon'">3. Sa nagligad nga 10 ka adlaw, nakapanugyan bala sa imo ang doctor o nars nga bantayan ang imo kaugalingun, mag separar sa isa ka lugar, o kun mag kuwarantin bangud sa kabalaka sa impeksyon sa CoViD-19?</p>
+                                        <p v-if="language == 'Bisaya'">3. Sa nilabay nga 10 ka adlaw,  aduna bay doctor or nurse, nag-ingon kanimo nga bantayan ang kaugalingon,  mag-inusara sa usa ka lugar or mag quarantine tungod sa kabalaka sa Covid 19 impeksyon? </p>
                                         <div class="custom-control custom-radio custom-control-inline ml-4">
                                             <input type="radio" id="yes3" name="three_question" class="custom-control-input" value="Yes" v-model="form.three_question"  >
                                             <label v-if="language=='English'" class="custom-control-label" for="yes3" >Yes</label>
@@ -109,10 +109,10 @@
                                         <span class="text-danger" v-if="errors.three_question">{{ errors.three_question[0] }}</span>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <p v-if="language == 'English'">4. Have you been exposed to a person with a suspected or confirmed case of COVID 19 in the past 14 days?</p>
-                                        <p v-if="language == 'Tagalog'">4. Ikaw ba ay may nakasamang tao na pinaghihinalaan o nakumpirma na may COVID 19 sa nagdaang 14 na araw?</p>
-                                        <p v-if="language == 'Hiligaynon'">4. Nakaupod mo bala ang tawo nga gina suspetsahan o may kompirmado nga kaso sg CoViD-19 sg nagligad nga 14 ka adlaw?</p>
-                                        <p v-if="language == 'Bisaya'">4. Nakahimamat  ba ka sa usa ka gidudahan or kumpirmadong adunay Covid 19 sa mga nilabay nga 14 ka adlaw?</p>
+                                        <p v-if="language == 'English'">4. Have you been exposed to a person with a suspected or confirmed case of COVID 19 in the past 10 days?</p>
+                                        <p v-if="language == 'Tagalog'">4. Ikaw ba ay may nakasamang tao na pinaghihinalaan o nakumpirma na may COVID 19 sa nagdaang 10 na araw?</p>
+                                        <p v-if="language == 'Hiligaynon'">4. Nakaupod mo bala ang tawo nga gina suspetsahan o may kompirmado nga kaso sg CoViD-19 sg nagligad nga 10 ka adlaw?</p>
+                                        <p v-if="language == 'Bisaya'">4. Nakahimamat  ba ka sa usa ka gidudahan or kumpirmadong adunay Covid 19 sa mga nilabay nga 10 ka adlaw?</p>
                                         <div class="custom-control custom-radio custom-control-inline ml-4">
                                             <input type="radio" id="yes4" name="four_question" class="custom-control-input" value="Yes" v-model="form.four_question"  >
                                             <label v-if="language=='English'" class="custom-control-label" for="yes4" >Yes</label>
@@ -129,10 +129,10 @@
                                         <span class="text-danger" v-if="errors.four_question">{{ errors.four_question[0] }}</span>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <p v-if="language == 'English'">5. Have you been sick or did you experience any of the following in the past 14 days: fever, dry cough, sore throat, nasal congestion, aches and pains, headache, diarrhea, loss of taste or smell, shortness of breath?</p>
-                                        <p v-if="language == 'Tagalog'">5. Nagkaroon ka ba ng sakit o alinman sa mga sumusunod sa nagdaang 14 na araw: lagnat, tuyong ubo, pananakit o pagkati ng lalamunan, baradong ilong, sakit ng katawan, sakit ng ulo, pagtatae, pagkawala ng pang-lasa o pang-amoy, at hirap sa paghinga?</p>
-                                        <p v-if="language == 'Hiligaynon'">5. Nagmasakit ka bala o naka eksperiensya sg bisan isa sa mga masunod, sa nagligad nga 14 ka adlaw: hilanat, pag-ubo, naga-askad nga tutunlan, barado nga ilong, pagpalanakit sg kalawasan, sakit sg ulo, ginalupot, nadulaan sg panabor o pagpanimaho, nabudlayan sg pagginhawa?</p>
-                                        <p v-if="language == 'Bisaya'">5. Nagsakit ba ka o nay gibati sama sa mga sumusunod sa nilabay nga 14 ka adlaw:  kalintura/hilanat, pag-ubo, sakit sa lawas, sakit sa ulo, kalibanga, pagkawala sa panimhot o panglasa,  paglisud sa pag ginhawa?</p>
+                                        <p v-if="language == 'English'">5. Have you been sick or did you experience any of the following in the past 10 days: fever, dry cough, sore throat, nasal congestion, aches and pains, headache, diarrhea, loss of taste or smell, shortness of breath?</p>
+                                        <p v-if="language == 'Tagalog'">5. Nagkaroon ka ba ng sakit o alinman sa mga sumusunod sa nagdaang 10 na araw: lagnat, tuyong ubo, pananakit o pagkati ng lalamunan, baradong ilong, sakit ng katawan, sakit ng ulo, pagtatae, pagkawala ng pang-lasa o pang-amoy, at hirap sa paghinga?</p>
+                                        <p v-if="language == 'Hiligaynon'">5. Nagmasakit ka bala o naka eksperiensya sg bisan isa sa mga masunod, sa nagligad nga 10 ka adlaw: hilanat, pag-ubo, naga-askad nga tutunlan, barado nga ilong, pagpalanakit sg kalawasan, sakit sg ulo, ginalupot, nadulaan sg panabor o pagpanimaho, nabudlayan sg pagginhawa?</p>
+                                        <p v-if="language == 'Bisaya'">5. Nagsakit ba ka o nay gibati sama sa mga sumusunod sa nilabay nga 10 ka adlaw:  kalintura/hilanat, pag-ubo, sakit sa lawas, sakit sa ulo, kalibanga, pagkawala sa panimhot o panglasa,  paglisud sa pag ginhawa?</p>
                                         <div class="custom-control custom-radio custom-control-inline ml-4">
                                             <input type="radio" id="yes5" name="five_question" class="custom-control-input" value="Yes" v-model="form.five_question"  >
                                             <label v-if="language=='English'" class="custom-control-label" for="yes5" >Yes</label>
@@ -149,10 +149,10 @@
                                         <span class="text-danger" v-if="errors.five_question">{{ errors.five_question[0] }}</span>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <p v-if="language == 'English'">6. Did you have close physical contact with anyone who have fever, dry cough, sore throat, nasal congestion, aches and pains, headache, diarrhea, loss of taste or smell, and shortness of breath in the last 14 days?</p>
-                                        <p v-if="language == 'Tagalog'">6. Mayroon ka bang nakalapit ng pisikal at nakasama na taong may lagnat, tuyong ubo, pananakit o pagkati ng lalamunan, baradong ilong, pananakit ng katawan, sakit ng ulo, pagtatae, pagkawala ng pang-lasa o pang-amoy, at hirap sa paghinga sa huling 14 na araw?</p>
-                                        <p v-if="language == 'Hiligaynon'">6. Nakapalapit ka bala sa tawo nga may hilanat, naga ubo, may pagpalanakit sang kalawasan, naga-askad nga tutunlan, barado nga ilong, sakit sang ulo, ginalupot, nadulaan sg panabor o pagpanimaho, kag nabudlayan sg pagginhawa sa sulod sang 14 ka adlaw?</p>
-                                        <p v-if="language == 'Bisaya'">6. Nakahimamat ba kag duol sa usa ka tao nga adunay kalintura/hilanat, ubo, sakit sa kalawasan, sakit sa ulo, kalibanga, nawad-an ug panglasa o panimhot ug paglisud sa pag ginhawa sulod sa nilabay nga 14 ka adlaw?</p>
+                                        <p v-if="language == 'English'">6. Did you have close physical contact with anyone who have fever, dry cough, sore throat, nasal congestion, aches and pains, headache, diarrhea, loss of taste or smell, and shortness of breath in the last 10 days?</p>
+                                        <p v-if="language == 'Tagalog'">6. Mayroon ka bang nakalapit ng pisikal at nakasama na taong may lagnat, tuyong ubo, pananakit o pagkati ng lalamunan, baradong ilong, pananakit ng katawan, sakit ng ulo, pagtatae, pagkawala ng pang-lasa o pang-amoy, at hirap sa paghinga sa huling 10 na araw?</p>
+                                        <p v-if="language == 'Hiligaynon'">6. Nakapalapit ka bala sa tawo nga may hilanat, naga ubo, may pagpalanakit sang kalawasan, naga-askad nga tutunlan, barado nga ilong, sakit sang ulo, ginalupot, nadulaan sg panabor o pagpanimaho, kag nabudlayan sg pagginhawa sa sulod sang 10 ka adlaw?</p>
+                                        <p v-if="language == 'Bisaya'">6. Nakahimamat ba kag duol sa usa ka tao nga adunay kalintura/hilanat, ubo, sakit sa kalawasan, sakit sa ulo, kalibanga, nawad-an ug panglasa o panimhot ug paglisud sa pag ginhawa sulod sa nilabay nga 10 ka adlaw?</p>
                                         <div class="custom-control custom-radio custom-control-inline ml-4">
                                             <input type="radio" id="yes6" name="six_question" class="custom-control-input" value="Yes" v-model="form.six_question"  >
                                             <label v-if="language=='English'" class="custom-control-label" for="yes6" >Yes</label>
