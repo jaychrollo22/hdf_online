@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
-                    <a href="#" class="btn btn-transparent-white font-weight-bold py-3 px-6 mr-2" @click="clearForm">New QR</a>
+                    <a href="#" class="btn btn-transparent-white font-weight-bold py-3 px-6 mr-2" @click="clearForm">Generate New QR</a>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <img :src="'hdf_qr/'+qr_hdf.id+'.png'" width="100%" height="auto">
+                                <img :src="'hdf_qr/'+qr_hdf.id+'.png'" width="100%" height="auto" @error="imageLoadError">
                                 <strong class="text-danger">Expiry Date: {{qr_hdf.expiry_date}}</strong>
                             </div>
                         </div>
@@ -322,6 +322,9 @@
             this.getDashboardData();
         },
         methods: {
+            imageLoadError(event) { 
+                event.target.src = "/img/imagenotavailable.PNG"; 
+            },
             clearForm(){
                 this.newQR = false;
                 this.form.one_question = "";
