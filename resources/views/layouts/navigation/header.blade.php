@@ -40,6 +40,13 @@
                                 <i class="menu-arrow"></i>
                             </a>
                         </li>
+                        <li class="menu-item menu-item-submenu menu-item-rel">
+                            <a href="{{ url('case-logs') }}" class="menu-link">
+                                <span class="menu-text">Case Logs</span>
+                                <span class="menu-desc"></span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                        </li>
                     </ul>
                     <!--end::Header Nav-->
                 </div>

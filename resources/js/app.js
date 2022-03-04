@@ -24,6 +24,7 @@ window.Vue = require('vue');
 Vue.component('dashboard', require('./components/Dashboard.vue').default);
 Vue.component('rt-pcr-logs', require('./components/RtPcrLogs/RtPcrLogs.vue').default);
 Vue.component('vaccine-logs', require('./components/VaccineLogs/VaccineLogs.vue').default);
+Vue.component('case-logs', require('./components/CaseLogs/CaseLogs.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

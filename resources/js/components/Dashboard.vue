@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content" ref="section">
         <div class="subheader py-2 py-lg-12 subheader-transparent" id="kt_subheader">
             <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                 <div class="d-flex align-items-center flex-wrap mr-1">
@@ -22,7 +22,6 @@
                 </div>
             </div>
         </div>
-
         <div class="d-flex flex-column-fluid">
             <div class="container">
                 <div class="row">
@@ -165,14 +164,6 @@
                                             <label v-if="language == 'Tagalog' || language == 'Hiligaynon'" class="custom-control-label" for="no6">Hindi</label>
                                             <label v-if="language == 'Bisaya'" class="custom-control-label" for="no6">Dili</label>
                                         </div>
-
-                                        <!-- <div class="col-md-4 mt-3">
-                                            <div class="form-group">
-                                                <p>If yes, where?</p> 
-                                                <input type="text" class="form-control" v-model="form.six_yes_desc"   @input="form.six_yes_desc=$event.target.value.toUpperCase()">
-                                            </div>
-                                        </div> -->
-
                                         <br>
                                         <span class="text-danger" v-if="errors.six_question">{{ errors.six_question[0] }}</span>
                                     </div>
