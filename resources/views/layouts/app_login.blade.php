@@ -3,7 +3,7 @@
 	<head><base href="">
 		<meta charset="utf-8" />
 		<title>Sign In | HDF</title>
-		<meta name="description" content="Employee Tracker" />
+		<meta name="description" content="HDF" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<link href="assets/css/pages/login/classic/login-2.css" rel="stylesheet" type="text/css" />
