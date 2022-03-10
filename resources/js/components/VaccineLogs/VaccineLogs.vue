@@ -296,6 +296,10 @@
                 .then(response => { 
                     v.vaccine_logs = response.data;
                     v.loading = false;
+
+                     if(v.vaccine_logs.length == 0){
+                        this.newVaccineLog();
+                    }
                 })
                 .catch(error => { 
                     v.errors = error.response.data.error;

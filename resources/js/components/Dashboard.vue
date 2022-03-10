@@ -307,10 +307,13 @@
                 saveDisable : false,
 
                 newQR : true,
+
+                vaccine_logs : [],
             }
         },
         created () {
             this.getDashboardData();
+            this.getVaccineLogs();
         },
         methods: {
             imageLoadError(event) { 
@@ -395,7 +398,31 @@
                     }
                    
                 })
-            }
+            },
+            getVaccineLogs() {
+                let v = this;
+                v.vaccine_logs = [];
+                axios.get('/get-all-vaccine-logs')
+                .then(response => { 
+                    v.vaccine_logs = response.data;
+                    if(v.vaccine_logs.length == 0){
+                        Swal.fire({
+                        title: 'Hi! Welcome to HDF Online, would you like to update your vaccination info? Just click "Yes" to proceed. Thank you.',
+                        icon: 'question',
+                        showDenyButton: true,
+                        confirmButtonText: `Yes, Proceed`,
+                        denyButtonText: `Dismiss`,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "/vaccine-logs";
+                            }
+                        })
+                    }
+                })
+                .catch(error => { 
+                    v.errors = error.response.data.error;
+                })
+            },
         },
     }
 </script>
