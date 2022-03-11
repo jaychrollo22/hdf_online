@@ -311,6 +311,10 @@
 
                                         var index_case_log = v.selected_case_log.case_logs.findIndex(item => item.id == case_log.id);
                                         v.selected_case_log.case_logs.splice(index_case_log,1);  
+
+                                        if(v.selected_case_log.case_logs.length == 0){
+                                            $('#view-case-log-modal').modal('hide');
+                                        }
                                     }
                                 });
                             }
