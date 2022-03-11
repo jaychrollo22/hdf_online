@@ -10,4 +10,8 @@ class Cases extends Model
     protected $table = 'cases';
 
     protected $guarded = [];
+
+    public function case_logs(){
+        return $this->hasMany('App\CaseLog')->orderBy('log_date','DESC');
+    }
 }

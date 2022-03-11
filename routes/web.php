@@ -38,5 +38,7 @@ Route::post('/update-vaccine-logs','VaccineLogsController@updateVaccineLogs');
 //Vaccine Logs
 Route::get('/case-logs','CaseLogsController@index');
 Route::get('/get-all-case-logs','CaseLogsController@getAllCaseLogs');
-
+Route::post('/save-case-logs','CaseLogsController@saveCaseLogs');
+Route::post('/update-case-logs','CaseLogsController@updateCaseLogs');
+Route::post('/remove-case-logs','CaseLogsController@removeCaseLogs');
 
