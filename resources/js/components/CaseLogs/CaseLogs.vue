@@ -18,6 +18,7 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
+                    <a href="#" class="btn btn-transparent-white font-weight-bold py-3 px-6 mr-2" @click="newCase">Add New</a>
                     <a href="/" class="btn btn-md btn-transparent-white font-weight-bold py-3 px-6 mr-2">Back</a>
                 </div>
             </div>
@@ -31,20 +32,21 @@
                             <table class="table table-checkable" id="kt_datatable">
                                 <thead>
                                     <tr>
-                                        <th>CASE</th>
-                                        <th>STATUS</th>
+                                        <th>DETAILS</th>
                                         <th>LOGS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="(item, i) in filteredQueues" :key="i" >
                                        <td>
-                                           <small><b>Date :</b>  {{item.case_date}}</small><br>
+                                           <small><b>Case Date :</b>  {{item.case_date}}</small><br>
+                                           <small><b>Location :</b>  {{item.location}}</small><br>
+                                           <small><b>Temperature :</b>  {{item.temperature}}</small><br>
                                            <small><b>Initial Findings :</b>  {{item.initial_findings}}</small><br>
                                            <small v-if="item.final_findings && item.final_findings !='OTHERS'"><b>Final Findings :</b>  {{item.final_findings}}</small>
                                            <small v-else><b>Final Findings :</b>  {{item.final_finding_others}}</small><br>
+                                           <small><b>Status : </b> {{item.status}}</small>
                                         </td>
-                                       <td><small>{{item.status}}</small></td>
                                        <td>
                                            <div v-if="item.case_logs.length > 0">
                                                <small class="text-primary"><a href="#" class="btn btn-sm btn-primary" @click="viewCaseLog(item)">{{item.case_logs.length}} Logs</a></small>  <small><a href="#" class="btn btn-sm btn-success" @click="addNew(item)">Add New</a></small>
@@ -246,6 +248,110 @@
         </div>
     </div>
 
+    <div class="modal fade" id="new-case-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+                <div>
+                    <button type="button" class="close mt-2 mr-2" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div> 
+                <div class="modal-body">
+                    <h4>Add New Case</h4>
+                    <div class="row">
+                        <div class="col-md-12 mt-3">
+                            <label for="">Case Date</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="cursor:pointer;width:40px;">
+                                        <i class="fas fa-calendar"></i>
+                                    </span>
+                                </div>
+                                <input type="date" class="form-control" v-model="case_add.case_date" >
+                            </div>
+                            <span class="text-danger" v-if="errors.case_date">{{ errors.case_date[0] }}</span>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <label for="">Location</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="cursor:pointer;width:40px;">
+                                        <i class="fas fa-file"></i>
+                                    </span>
+                                </div>
+                                <select class="form-control" v-model="case_add.location" id="location">
+                                    <option value="">Choose Location</option>
+                                    <option value="Capiz">Capiz</option>
+                                    <option value="Davao">Davao</option>
+                                    <option value="Bacolod">Bacolod</option>
+                                    <option value="Iloilo">Iloilo</option>
+                                    <option value="LFMI/Farms">LFMI/Farms</option>
+                                    <option value="Bataan">Bataan</option>
+                                    <option value="BGC">BGC</option>
+                                    <option value="Manila">Manila</option>
+                                    <option value="Isabela">Isabela</option>
+                                </select>
+                            </div>
+                            <span class="text-danger" v-if="errors.location">{{ errors.location[0] }}</span>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <label for="">Temperature</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="cursor:pointer;width:40px;">
+                                        <i class="fas fa-file"></i>
+                                    </span>
+                                </div>
+                                <input type="number" class="form-control" placeholder="00.00" v-model="case_add.temperature" >
+                            </div>
+                            <span class="text-danger" v-if="errors.temperature">{{ errors.temperature[0] }}</span>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <label for="">Initial Findings</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="cursor:pointer;width:40px;">
+                                        <i class="fas fa-file"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="(PUM/COUGH/FEVER)" v-model="case_add.initial_findings" >
+                            </div>
+                            <span class="text-danger" v-if="errors.initial_findings">{{ errors.initial_findings[0] }}</span>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <label for="">Remarks</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="cursor:pointer;width:40px;">
+                                        <i class="fas fa-file"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Remarks" v-model="case_add.remarks" >
+                            </div>
+                            <span class="text-danger" v-if="errors.remarks">{{ errors.remarks[0] }}</span>
+                        </div>
+
+                        <div class="col-md-12 mt-3">
+                            <span class="mb-2">Have you been in the office for the past 5 days?</span>  <br>
+                            <input type="radio" id="YES" v-model="case_add.is_office" value="YES">
+                            <label for="YES">YES</label><br>
+                            <input type="radio" id="NO" v-model="case_add.is_office" value="NO">
+                            <label for="NO">NO</label><br>
+                        </div>
+
+                        <div class="col-md-12" v-if="case_add.is_office == 'YES'">
+                            <span>Please list down the names of that you have been in close contact.</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" @click="saveNewCase" :disabled="disableNewCase">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 </template>
 
@@ -279,12 +385,75 @@
                     others : ''
                 },
                 selected_case_log : [],
+
+                case_add : {
+                    case_date : '',
+                    temperature : '',
+                    initial_findings : '',
+                    location : '',
+                    remarks : '',
+                    is_office : '',
+                },
+
+                disableNewCase : false
             }
         },
         created () {
             this.getCaseLogs();
         },
         methods: {
+            saveNewCase(){
+                let v = this;
+                Swal.fire({
+                title: 'Are you sure you want to save this case log?',
+                icon: 'question',
+                showDenyButton: true,
+                confirmButtonText: `Yes`,
+                denyButtonText: `No`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let formData = new FormData();
+                        formData.append('case_date', v.case_add.case_date ? v.case_add.case_date : "");
+                        formData.append('temperature', v.case_add.temperature ? v.case_add.temperature : "");
+                        formData.append('initial_findings', v.case_add.initial_findings ? v.case_add.initial_findings : "");
+                        formData.append('location', v.case_add.location ? v.case_add.location : "");
+                        formData.append('remarks', v.case_add.remarks ? v.case_add.remarks : "");
+                        formData.append('is_office', v.case_add.is_office ? v.case_add.is_office : "");
+                        axios.post(`/save-new-case`, formData)
+                        .then(response => {
+                            if(response.data.status == 'saved'){
+                                Swal.fire({
+                                    title: 'Case has been saved.',
+                                    text: 'Successfully saved.',
+                                    icon: 'success',
+                                    confirmButtonText: 'Okay',
+                                }).then(okay => {
+                                    if (okay) {
+                                        $('#new-case-modal').modal('hide');
+                                        v.cases.unshift(response.data.cases);   
+                                        v.case_add.case_date = '';
+                                        v.case_add.temperature = '';
+                                        v.case_add.initial_findings = '';
+                                        v.case_add.remarks = '';
+                                        v.case_add.location = '';
+                                        v.case_add.is_office = '';
+                                    }
+                                });
+                            }
+                        })
+
+                    }
+                })
+            },
+            newCase(){
+                this.case_add.case_date = '';
+                this.case_add.temperature = '';
+                this.case_add.initial_findings = '';
+                this.case_add.remarks = '';
+                this.case_add.location = '';
+                this.case_add.is_office = '';
+                $('#new-case-modal').modal('show');
+            },
             removeCaseLog(case_log){
                 let v = this;
                 Swal.fire({

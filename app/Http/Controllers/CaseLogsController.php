@@ -29,10 +29,46 @@ class CaseLogsController extends Controller
         return view('case_logs.index');
     }
 
+    public function saveNewCase(Request $request){
+
+        $employee = session('employee');
+        $name = $employee['first_name'] . ' ' . $employee['last_name'];
+        $department = $employee['departments'][0]['name'];
+        $company = $employee['companies'][0]['name'];
+        $contact_number = $employee['contact_number'];
+
+        $data = $request->all();
+
+        DB::beginTransaction();
+        try{
+            $validate_case = Cases::where('case_date',$data['case_date'])->where('name',$name)->first();
+            if(empty($validate_case)){
+                
+                $data['name'] = $name;
+                $data['employee_id'] = $employee['id'];
+                $data['user_id'] = Auth::user()->id;
+                $data['department_company'] = $department . ' / ' . $company;
+                $data['contact_number'] = $contact_number;
+
+                if($save = Cases::create($data)){
+                    DB::commit();
+                    $cases = Cases::where('id',$save->id)->with('case_logs')->first();
+                    return $response = [
+                        'status'=>'saved',
+                        'cases'=>$cases
+                    ];
+                }
+            }
+        }catch (Exception $e) {
+            DB::rollBack();
+            return 'error';
+        }
+    }
+
     public function getAllCaseLogs(){
         $employee = session('employee');
         $name = $employee['first_name'] . ' ' . $employee['last_name'];
-        return Cases::where('name',$name)->with('case_logs')->get();
+        return Cases::where('name',$name)->with('case_logs')->orderBy('case_date','DESC')->get();
     }
 
     public function saveCaseLogs(Request $request){
