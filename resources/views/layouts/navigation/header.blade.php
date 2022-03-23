@@ -27,15 +27,15 @@
                             </a>
                         </li>
                         <li class="menu-item menu-item-submenu menu-item-rel">
-                            <a href="{{ url('rt-pcr-logs') }}" class="menu-link">
-                                <span class="menu-text">TEST RESULTS</span>
+                            <a href="{{ url('vaccine-logs') }}" class="menu-link">
+                                <span class="menu-text">VACCINATION DETAILS</span>
                                 <span class="menu-desc"></span>
                                 <i class="menu-arrow"></i>
                             </a>
                         </li>
                         <li class="menu-item menu-item-submenu menu-item-rel">
-                            <a href="{{ url('vaccine-logs') }}" class="menu-link">
-                                <span class="menu-text">VACCINATION DETAILS</span>
+                            <a href="{{ url('rt-pcr-logs') }}" class="menu-link">
+                                <span class="menu-text">TEST RESULTS</span>
                                 <span class="menu-desc"></span>
                                 <i class="menu-arrow"></i>
                             </a>
