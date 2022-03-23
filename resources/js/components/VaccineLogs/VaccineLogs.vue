@@ -104,6 +104,20 @@
                                 </div>
                                 <span class="text-danger" v-if="errors.second_dose_city">{{ errors.second_dose_city[0] }}</span>
                             </div>
+
+                            <div class="col-md-4 mt-2">
+                                <label for="">Attachment</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="cursor:pointer;width:40px;">
+                                            <i class="fas fa-file"></i>
+                                        </span>
+                                    </div>
+                                    <input type="file" id="attachment" class="form-control" ref="file" accept="*" v-on:change="vaccineFileHandleFileUpload()"/>
+                                    <a v-if="user_vaccination_detail.attachment" class="btn btn-outline-primary ml-1" :href="'storage/vaccine_files/'+user_vaccination_detail.attachment" target="_blank">View File</a>
+                                </div>
+                                <span class="text-danger" v-if="errors.attachment">{{ errors.attachment[0] }}</span>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -121,16 +135,12 @@
                                     <tr>
                                         <th>Brand</th>
                                         <th>Date Given</th>
-                                        <!-- <th>Date Expiry</th>
-                                        <th>Dose</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="(item, i) in filteredQueues" :key="i" >
                                        <td><small>{{item.brand}}</small></td>
                                        <td><small>{{item.date_given}}</small></td>
-                                       <!-- <td><small>{{item.date_expiry}}</small></td>
-                                       <td><small>{{item.dose}}</small></td> -->
                                        <td align="center">
                                            <i class="fas fa-pen text-primary" style="cursor:pointer;" @click="editVaccineLog(item)"></i>
                                        </td>
@@ -191,30 +201,6 @@
                                 </div>
                                 <span class="text-danger" v-if="errors.date_given">{{ errors.date_given[0] }}</span>
                         </div>
-                        <!-- <div class="col-md-12 mt-2">
-                            <label for="">Date Expiry</label>
-                            <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" style="cursor:pointer;width:40px;">
-                                            <i class="fas fa-calendar"></i>
-                                        </span>
-                                    </div>
-                                    <input type="date" class="form-control" v-model="vaccine_log.date_expiry">
-                                </div>
-                                <span class="text-danger" v-if="errors.date_expiry">{{ errors.date_expiry[0] }}</span>
-                        </div> -->
-                        <!-- <div class="col-md-12 mt-2">
-                            <label for="">Dose</label>
-                           <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" style="cursor:pointer;width:40px;">
-                                        <i class="fas fa-syringe"></i>
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Ex. 1st Dose" v-model="vaccine_log.dose">
-                            </div>
-                            <span class="text-danger" v-if="errors.dose">{{ errors.dose[0] }}</span>
-                        </div> -->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -261,30 +247,6 @@
                                 </div>
                                 <span class="text-danger" v-if="errors.date_given">{{ errors.date_given[0] }}</span>
                         </div>
-                        <!-- <div class="col-md-12 mt-2">
-                            <label for="">Date Expiry</label>
-                            <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" style="cursor:pointer;width:40px;">
-                                            <i class="fas fa-calendar"></i>
-                                        </span>
-                                    </div>
-                                    <input type="date" class="form-control" v-model="vaccine_log_edit.date_expiry">
-                                </div>
-                                <span class="text-danger" v-if="errors.date_expiry">{{ errors.date_expiry[0] }}</span>
-                        </div> -->
-                        <!-- <div class="col-md-12 mt-2">
-                            <label for="">Dose</label>
-                           <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" style="cursor:pointer;width:40px;">
-                                        <i class="fas fa-syringe"></i>
-                                    </span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Ex. 1st Dose" v-model="vaccine_log_edit.dose">
-                            </div>
-                            <span class="text-danger" v-if="errors.dose">{{ errors.dose[0] }}</span>
-                        </div> -->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -341,6 +303,10 @@
             this.getUserVaccinationDetails();
         },
         methods: {
+            vaccineFileHandleFileUpload(){
+                var file = document.getElementById("attachment");
+                this.user_vaccination_detail.attachment = file.files[0];
+            },
             updateUserVaccineDetails(){
                 let v = this;
                 Swal.fire({
@@ -357,6 +323,7 @@
                         formData.append('first_dose_brand', v.user_vaccination_detail.first_dose_brand ? v.user_vaccination_detail.first_dose_brand : "");    
                         formData.append('first_dose_date', v.user_vaccination_detail.first_dose_date ? v.user_vaccination_detail.first_dose_date : "");    
                         formData.append('first_dose_city', v.user_vaccination_detail.first_dose_city ? v.user_vaccination_detail.first_dose_city : "");  
+                        formData.append('attachment', v.user_vaccination_detail.attachment ? v.user_vaccination_detail.attachment : "");  
                         
                         if(v.user_vaccination_detail.is_johnson == 'true'){
                             formData.append('second_dose_brand', "");    

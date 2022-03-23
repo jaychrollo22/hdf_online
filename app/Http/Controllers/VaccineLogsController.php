@@ -9,6 +9,7 @@ use App\UserVaccinationDetail;
 
 use DB;
 use Auth;
+use Storage;
 
 class VaccineLogsController extends Controller
 {
@@ -110,6 +111,16 @@ class VaccineLogsController extends Controller
         $data = $request->all();
         DB::beginTransaction();
         try{
+
+            if(isset($request->attachment)){
+                if($request->file('attachment')){
+                    $attachment = $request->file('attachment');   
+                    $filename = Auth::user()->id . '.' . $attachment->getClientOriginalExtension();
+                    $path = Storage::disk('public')->putFileAs('vaccine_files', $attachment , $filename);
+                    $data['attachment'] = $filename;
+                }    
+            }
+
             $data['user_id'] = $user_id;
             //If has id
             if($data['id']){
