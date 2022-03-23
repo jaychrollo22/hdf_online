@@ -5,7 +5,7 @@
             <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                 <div class="d-flex align-items-center flex-wrap mr-1">
                     <div class="d-flex flex-column">
-                        <h2 class="text-white font-weight-bold my-2 mr-5">RT PCR</h2>
+                        <h2 class="text-white font-weight-bold my-2 mr-5">TEST RESULTS</h2>
                         <div class="d-flex align-items-center font-weight-bold my-2">
                             <a href="#" class="opacity-75 hover-opacity-100">
                                 <i class="flaticon2-shelter text-white icon-1x"></i>
@@ -84,7 +84,7 @@
                     </button>
                 </div> 
                 <div class="modal-header">
-                    <h2 class="col-12 modal-title text-center">Add RT PCR Logs</h2>
+                    <h2 class="col-12 modal-title text-center">Add RT-PCR / ANTIGEN</h2>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -101,7 +101,7 @@
                             <span class="text-danger" v-if="errors.rt_pcr_date">{{ errors.rt_pcr_date[0] }}</span>
                         </div>
                         <div class="col-md-12 mt-2">
-                            <label for="">RT PCR File</label>
+                            <label for="">Attachment</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" style="cursor:pointer;width:40px;">
@@ -146,7 +146,7 @@
                     </button>
                 </div> 
                 <div class="modal-header">
-                    <h2 class="col-12 modal-title text-center">Edit RT PCR Logs</h2>
+                    <h2 class="col-12 modal-title text-center">Edit RT-PCR / ANTIGEN</h2>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -163,7 +163,7 @@
                             <span class="text-danger" v-if="errors.rt_pcr_date">{{ errors.rt_pcr_date[0] }}</span>
                         </div>
                         <div class="col-md-12 mt-2">
-                            <label for="">RT PCR File</label>
+                            <label for="">Attachment</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" style="cursor:pointer;width:40px;">

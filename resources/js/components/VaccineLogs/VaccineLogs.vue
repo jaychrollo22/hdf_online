@@ -5,7 +5,7 @@
             <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                 <div class="d-flex align-items-center flex-wrap mr-1">
                     <div class="d-flex flex-column">
-                        <h2 class="text-white font-weight-bold my-2 mr-5">Vaccination</h2>
+                        <h2 class="text-white font-weight-bold my-2 mr-5">VACCINATION DETAILS</h2>
                         <div class="d-flex align-items-center font-weight-bold my-2">
                             <a href="#" class="opacity-75 hover-opacity-100">
                                 <i class="flaticon2-shelter text-white icon-1x"></i>
@@ -76,7 +76,7 @@
                     </button>
                 </div> 
                 <div class="modal-header">
-                    <h2 class="col-12 modal-title text-center">Add Vaccine Logs</h2>
+                    <h2 class="col-12 modal-title text-center">ADD VACCINATION DETAILS</h2>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -146,7 +146,7 @@
                     </button>
                 </div> 
                 <div class="modal-header">
-                    <h2 class="col-12 modal-title text-center">Edit Vaccine Logs</h2>
+                    <h2 class="col-12 modal-title text-center">EDIT VACCINATION DETAILS</h2>
                 </div>
                 <div class="modal-body">
                     <div class="row">

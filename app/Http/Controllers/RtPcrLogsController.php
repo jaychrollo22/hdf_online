@@ -27,7 +27,7 @@ class RtPcrLogsController extends Controller
     public function index(){
 
         session([
-            'title'=>'RT PCR Logs'
+            'title'=>'TEST RESULTS'
         ]);
 
         return view('rt_pcr_logs.index');

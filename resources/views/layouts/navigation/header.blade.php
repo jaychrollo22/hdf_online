@@ -21,28 +21,28 @@
 
                         <li class="menu-item menu-item-submenu menu-item-rel">
                             <a href="{{ url('home') }}" class="menu-link">
-                                <span class="menu-text">HDF Online</span>
+                                <span class="menu-text">HDF ONLINE</span>
                                 <span class="menu-desc"></span>
                                 <i class="menu-arrow"></i>
                             </a>
                         </li>
                         <li class="menu-item menu-item-submenu menu-item-rel">
                             <a href="{{ url('rt-pcr-logs') }}" class="menu-link">
-                                <span class="menu-text">RT PCR Logs</span>
+                                <span class="menu-text">TEST RESULTS</span>
                                 <span class="menu-desc"></span>
                                 <i class="menu-arrow"></i>
                             </a>
                         </li>
                         <li class="menu-item menu-item-submenu menu-item-rel">
                             <a href="{{ url('vaccine-logs') }}" class="menu-link">
-                                <span class="menu-text">Vaccination Logs</span>
+                                <span class="menu-text">VACCINATION DETAILS</span>
                                 <span class="menu-desc"></span>
                                 <i class="menu-arrow"></i>
                             </a>
                         </li>
                         <li class="menu-item menu-item-submenu menu-item-rel">
                             <a href="{{ url('case-logs') }}" class="menu-link">
-                                <span class="menu-text">Case Logs</span>
+                                <span class="menu-text">CASE LOGS</span>
                                 <span class="menu-desc"></span>
                                 <i class="menu-arrow"></i>
                             </a>

@@ -23,7 +23,7 @@ class VaccineLogsController extends Controller
 
     public function index(){
         session([
-            'title'=>'Vaccine Logs'
+            'title'=>'VACCINATION DETAILS'
         ]);
 
         return view('vaccine_logs.index'); 
