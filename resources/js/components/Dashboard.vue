@@ -402,12 +402,11 @@
             getVaccineLogs() {
                 let v = this;
                 v.vaccine_logs = [];
-                axios.get('/get-all-vaccine-logs')
+                axios.get('/get-user-vaccination-details')
                 .then(response => { 
-                    v.vaccine_logs = response.data;
-                    if(v.vaccine_logs.length == 0){
+                    if(!response.data){
                         Swal.fire({
-                        title: 'Hi! Welcome to HDF Online, would you like to update your vaccination info? Just click "Yes" to proceed. Thank you.',
+                        title: 'Hi! Welcome to HDF Online, would you like to update your Vaccination Details? Just click "Yes" to proceed. Thank you.',
                         icon: 'question',
                         showDenyButton: true,
                         confirmButtonText: `Yes, Proceed`,
