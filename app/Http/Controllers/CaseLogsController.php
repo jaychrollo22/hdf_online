@@ -172,6 +172,7 @@ class CaseLogsController extends Controller
                         $q->where('status','Active');
                     })
                     ->select('id','name')
+                    ->orderBy('name','ASC')
                     ->get();
     }
 
