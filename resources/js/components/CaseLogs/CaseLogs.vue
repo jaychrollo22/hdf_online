@@ -340,9 +340,16 @@
                         </div>
 
                         <div class="col-md-12" v-if="case_add.is_office == 'YES'">
-                            <span>Please list down the names of that you have been in close contact.</span>
+                            <span>Please list down the names, that you have been in close contact.</span>
+                            <div v-for="(item,index) in case_close_contacts" v-bind:key="index">
+                                <select class="form-control mt-2" v-model="item.contact_user_id">
+                                    <option value="">Choose Name</option>
+                                    <option v-for="(user,x) in users" v-bind:key="x" :value="user.id">{{user.name}}</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-sm btn-warning float-right mt-2 mr-2" @click="addNewLineCloseContact">New</button>
+                            <button class="btn btn-sm btn-danger float-right mt-2 mr-2" @click="removeNewLineCloseContact">Remove</button>
                         </div>
-
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -395,13 +402,39 @@
                     is_office : '',
                 },
 
-                disableNewCase : false
+                disableNewCase : false,
+
+                case_close_contacts : [{
+                    contact_user_id : ''
+                }],
+
+                users : []
             }
         },
         created () {
             this.getCaseLogs();
+            this.getUsers();
         },
         methods: {
+            getUsers(){
+                let v = this;
+                v.users = [];
+                axios.get('/get-all-users')
+                .then(response => { 
+                    v.users = response.data;
+                })
+                .catch(error => { 
+                    v.errors = error.response.data.error;
+                })
+            },
+            addNewLineCloseContact(){
+                this.case_close_contacts.push({
+                    contact_user_id : ''
+                })
+            },
+            removeNewLineCloseContact(){
+                this.case_close_contacts.splice(-1);
+            },
             saveNewCase(){
                 let v = this;
                 Swal.fire({
@@ -419,6 +452,7 @@
                         formData.append('location', v.case_add.location ? v.case_add.location : "");
                         formData.append('remarks', v.case_add.remarks ? v.case_add.remarks : "");
                         formData.append('is_office', v.case_add.is_office ? v.case_add.is_office : "");
+                        formData.append('case_close_contacts', v.case_close_contacts ? JSON.stringify(v.case_close_contacts) : "");
                         axios.post(`/save-new-case`, formData)
                         .then(response => {
                             if(response.data.status == 'saved'){
@@ -452,6 +486,10 @@
                 this.case_add.remarks = '';
                 this.case_add.location = '';
                 this.case_add.is_office = '';
+                this.case_close_contacts = [];
+                this.case_close_contacts.push({
+                    contact_user_id : ''
+                })
                 $('#new-case-modal').modal('show');
             },
             removeCaseLog(case_log){

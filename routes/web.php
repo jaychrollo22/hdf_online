@@ -49,4 +49,7 @@ Route::post('/remove-case-logs','CaseLogsController@removeCaseLogs');
 Route::post('/save-new-case','CaseLogsController@saveNewCase');
 
 
+Route::get('/get-all-users','CaseLogsController@getAllUsers');
+
+
 

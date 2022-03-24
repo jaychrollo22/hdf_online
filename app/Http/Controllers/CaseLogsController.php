@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Cases;
 use App\CaseLog;
+use App\CaseCloseContact;
 
 use DB;
 use Auth;
@@ -38,6 +40,8 @@ class CaseLogsController extends Controller
         $contact_number = $employee['contact_number'];
 
         $data = $request->all();
+        
+        $case_close_contacts = json_decode($data['case_close_contacts'],true);
 
         DB::beginTransaction();
         try{
@@ -49,9 +53,20 @@ class CaseLogsController extends Controller
                 $data['user_id'] = Auth::user()->id;
                 $data['department_company'] = $department . ' / ' . $company;
                 $data['contact_number'] = $contact_number;
-
+                unset($data['case_close_contacts']);
                 if($save = Cases::create($data)){
                     DB::commit();
+
+                    if(count($case_close_contacts) > 0){
+                        foreach($case_close_contacts as $item){
+                            $close_contact['case_id'] = $save->id;
+                            $close_contact['user_id'] = Auth::user()->id;
+                            $close_contact['contact_user_id'] = $item['contact_user_id'];
+                            CaseCloseContact::create($close_contact);
+                        }
+                    }
+                    
+                    
                     $cases = Cases::where('id',$save->id)->with('case_logs')->first();
                     return $response = [
                         'status'=>'saved',
@@ -151,5 +166,13 @@ class CaseLogsController extends Controller
             return 'error';
         }
     }   
+
+    public function getAllUsers(){
+        return User::wherehas('employee',function($q){
+                        $q->where('status','Active');
+                    })
+                    ->select('id','name')
+                    ->get();
+    }
 
 }
