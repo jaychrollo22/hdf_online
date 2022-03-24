@@ -122,6 +122,7 @@ class VaccineLogsController extends Controller
             }
 
             $data['user_id'] = $user_id;
+            $data['is_approved'] = 'For Verification';
             //If has id
             if($data['id']){
                 $user_vaccination_details = UserVaccinationDetail::where('id',$data['id'])->where('user_id',$user_id)->first();

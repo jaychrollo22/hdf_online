@@ -26,7 +26,15 @@
         <div class="d-flex flex-column-fluid">
             <div class="container">
                 <div class="card card-custom gutter-b">
+                    
                     <div class="card-body">
+                        <span class="label label-lg label-light-primary label-inline font-weight-bold py-4 float-right" v-if="user_vaccination_detail.is_approved == 'For Verification'">
+                            For Verification
+                        </span>
+                        <span class="label label-lg label-light-primary label-inline font-weight-bold py-4 float-right" v-else>
+                            {{user_vaccination_detail.is_approved}}
+                        </span>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <input type="checkbox" v-model="user_vaccination_detail.is_johnson" true-value="true" false-value="false" @change="isTick">
