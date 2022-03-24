@@ -69,7 +69,8 @@ class HomeController extends Controller
             $data['name'] = Auth::user()->name;
             $data['dept_bu_position'] = $employee['cluster'] . ' ' . $employee['position'];
             $data['contact_number'] = $employee['contact_number'];
-            $data['expiry_date'] = date('Y-m-d 23:59:00', strtotime("+1 day"));
+            $date_today = date('Y-m-d');
+            $data['expiry_date'] = date('Y-m-d 23:59:00', strtotime($date_today . ' +2 day'));
             if($new = QrHealthDeclarationForm::create($data)){
                 DB::commit();
                 QRCode::text($new->id)->setSize(50)->setMargin(2)->setOutfile(base_path().'/public/hdf_qr/'. $new->id.'.png')->png();
