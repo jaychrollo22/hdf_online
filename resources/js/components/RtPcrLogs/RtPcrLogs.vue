@@ -33,6 +33,7 @@
                                 <thead>
                                     <tr>
                                         <th>Date</th>
+                                        <th>Test</th>
                                         <th>File</th>
                                         <th>Results</th>
                                         <th></th>
@@ -41,6 +42,7 @@
                                 <tbody>
                                      <tr v-for="(item, i) in filteredQueues" :key="i" >
                                        <td><small>{{item.rt_pcr_date}}</small></td>
+                                       <td><small>{{item.test_type}}</small></td>
                                        <td>
                                            <a :href="'storage/rt_pcr_file/'+item.rt_pcr_file" target="_blank">
                                                 <small>View File</small> 
@@ -88,6 +90,22 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        <div class="col-md-12 mt-2">
+                            <label for="">TEST</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="cursor:pointer;width:40px;">
+                                        <i class="fas fa-file"></i>
+                                    </span>
+                                </div>
+                                <select class="form-control" v-model="rt_pcr_log.test_type">
+                                    <option value="">Choose</option>
+                                    <option value="RT-PCR">RT-PCR</option>
+                                    <option value="ANTIGEN">ANTIGEN</option>
+                                </select>
+                            </div>
+                            <span class="text-danger" v-if="errors.test_type">{{ errors.test_type[0] }}</span>
+                        </div>
                         <div class="col-md-12 mt-2">
                             <label for="">Testing Date</label>
                            <div class="input-group">
@@ -151,6 +169,22 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12 mt-2">
+                            <label for="">TEST</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="cursor:pointer;width:40px;">
+                                        <i class="fas fa-file"></i>
+                                    </span>
+                                </div>
+                                <select class="form-control" v-model="rt_pcr_log_edit.test_type">
+                                    <option value="">Choose</option>
+                                    <option value="RT-PCR">RT-PCR</option>
+                                    <option value="ANTIGEN">ANTIGEN</option>
+                                </select>
+                            </div>
+                            <span class="text-danger" v-if="errors.test_type">{{ errors.test_type[0] }}</span>
+                        </div>
+                        <div class="col-md-12 mt-2">
                             <label for="">Testing Date</label>
                            <div class="input-group">
                                 <div class="input-group-prepend">
@@ -190,6 +224,7 @@
                             </div>
                             <span class="text-danger" v-if="errors.results">{{ errors.results[0] }}</span>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -214,12 +249,14 @@
                     'rt_pcr_date' : '',
                     'rt_pcr_file' : '',
                     'results' : '',
+                    'test_type' : '',
                 },
                 rt_pcr_log_edit : {
                     'id' : '',
                     'rt_pcr_date' : '',
                     'rt_pcr_file' : '',
                     'results' : '',
+                    'test_type' : '',
                 },
 
                 loading : false,
@@ -256,6 +293,7 @@
                         formData.append('rt_pcr_date', v.rt_pcr_log_edit.rt_pcr_date ? v.rt_pcr_log_edit.rt_pcr_date : "");    
                         formData.append('rt_pcr_file', v.rt_pcr_log_edit.rt_pcr_file ? v.rt_pcr_log_edit.rt_pcr_file : "");    
                         formData.append('results', v.rt_pcr_log_edit.results ? v.rt_pcr_log_edit.results : "");  
+                        formData.append('test_type', v.rt_pcr_log_edit.test_type ? v.rt_pcr_log_edit.test_type : "");  
                         
                         axios.post(`/update-rt-pcr-logs`, formData)
                         .then(response => {
@@ -286,6 +324,7 @@
                 this.rt_pcr_log_edit.rt_pcr_date = rt_pcr_log.rt_pcr_date;
                 this.rt_pcr_log_edit.rt_pcr_file = rt_pcr_log.rt_pcr_file;
                 this.rt_pcr_log_edit.results = rt_pcr_log.results;
+                this.rt_pcr_log_edit.test_type = rt_pcr_log.test_type;
                 document.getElementById("rt_pcr_file_edit").value = '';
                 $('#edit-rt-pcr-log-modal').modal('show');
             },
@@ -310,11 +349,13 @@
                 this.rt_pcr_log.rt_pcr_date = '';
                 this.rt_pcr_log.rt_pcr_file = '';
                 this.rt_pcr_log.results = '';
+                this.rt_pcr_log.test_type = '';
 
                 this.rt_pcr_log_edit.id = '';
                 this.rt_pcr_log_edit.rt_pcr_date = '';
                 this.rt_pcr_log_edit.rt_pcr_file = '';
                 this.rt_pcr_log_edit.results = '';
+                this.rt_pcr_log_edit.test_type = '';
 
                 document.getElementById("rt_pcr_file_edit").value = '';
                 document.getElementById("rt_pcr_file_add").value = '';
@@ -333,6 +374,7 @@
                         formData.append('rt_pcr_date', v.rt_pcr_log.rt_pcr_date ? v.rt_pcr_log.rt_pcr_date : "");    
                         formData.append('rt_pcr_file', v.rt_pcr_log.rt_pcr_file ? v.rt_pcr_log.rt_pcr_file : "");    
                         formData.append('results', v.rt_pcr_log.results ? v.rt_pcr_log.results : "");    
+                        formData.append('test_type', v.rt_pcr_log.test_type ? v.rt_pcr_log.test_type : "");    
                         axios.post(`/save-rt-pcr-logs`, formData)
                         .then(response => {
                             if(response.data.status == 'saved'){
