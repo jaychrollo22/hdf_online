@@ -437,6 +437,7 @@
             },
             saveNewCase(){
                 let v = this;
+                v.disableNewCase = true;
                 Swal.fire({
                 title: 'Are you sure you want to save this case log?',
                 icon: 'question',
@@ -471,11 +472,15 @@
                                         v.case_add.remarks = '';
                                         v.case_add.location = '';
                                         v.case_add.is_office = '';
+                                        v.disableNewCase = false;
                                     }
                                 });
+                            }else{
+                                v.disableNewCase = false;
                             }
                         })
-
+                    }else{
+                        v.disableNewCase = false;
                     }
                 })
             },
