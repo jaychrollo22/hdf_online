@@ -81,21 +81,23 @@ class CaseLogsController extends Controller
                     if($admin_emails){
                         foreach($admin_emails as $admin_email){
                             $email = $admin_email['email'];
-                            $message_to_admin = "<p> We have a <strong>new</strong> case.</p>
-                                                    <hr>
-                                                    <ul>
-                                                        <li>Date : ".$request->case_date."</li>
-                                                        <li>Employee Name : ".$name."</li>
-                                                        <li>Department / Company : ".$department . ' / ' . $company."</li>
-                                                        <li>Temperature : ".$request->temperature."</li>
-                                                        <li>Initial Findings : ".$request->initial_findings."</li>
-                                                        <li>Remarks : ".$request->remarks."</li>
-                                                        <li>Location : ".$request->location."</li>
-                                                    </ul>
-                                                    <p>Link : https://myvisitors.lafilgroup.com:8671/dashboard</p>
-                                                    ";
+                            if($admin_email['location'] == $request->location){
+                                $message_to_admin = "<p> We have a <strong>new</strong> case.</p>
+                                                        <hr>
+                                                        <ul>
+                                                            <li>Date : ".$request->case_date."</li>
+                                                            <li>Employee Name : ".$name."</li>
+                                                            <li>Department / Company : ".$department . ' / ' . $company."</li>
+                                                            <li>Temperature : ".$request->temperature."</li>
+                                                            <li>Initial Findings : ".$request->initial_findings."</li>
+                                                            <li>Remarks : ".$request->remarks."</li>
+                                                            <li>Location : ".$request->location."</li>
+                                                        </ul>
+                                                        <p>Link : https://myvisitors.lafilgroup.com:8671/dashboard</p>
+                                                        ";
 
-                            $send_webex_to_admin = $this->sendWebexMessage($email,$message_to_admin);
+                                $send_webex_to_admin = $this->sendWebexMessage($email,$message_to_admin);
+                            }
                         }
                     }
 
