@@ -135,7 +135,25 @@ class CaseLogsController extends Controller
             $data['user_id'] = Auth::user()->id;
             if($save = CaseLog::create($data)){
                 DB::commit();
-                $cases = Cases::where('id',$data['cases_id'])->with('case_logs')->first();
+                $cases = Cases::where('id',$data['cases_id'])->with('case_logs')->first();  
+                $admin_emails = CaseNurseNotifier::all();
+                if($admin_emails){
+                    foreach($admin_emails as $admin_email){
+                        $email = $admin_email['email'];
+                        if($admin_email['location'] == $cases->location){
+                            $message_to_admin = "<p> Employee :  ".Auth::user()->name." save a case log.</p>
+                                                    <hr>
+                                                    <ul>
+                                                        <li>Case Date : ".$cases->case_date."</li>
+                                                        <li>Log Date : ".$request->log_date."</li>
+                                                        <li>Temperature : ".$request->temperature."</li>
+                                                        <li>Oximeter : ".$request->oximeter."</li>
+                                                        <li>Others/Remarls : ".$request->others."</li>
+                                                    </ul>";
+                            $send_webex_to_admin = $this->sendWebexMessage($email,$message_to_admin);
+                        }
+                    }
+                }
                 return $response = [
                     'status'=>'saved',
                     'cases'=>$cases
