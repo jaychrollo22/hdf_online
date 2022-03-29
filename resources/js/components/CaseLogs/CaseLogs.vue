@@ -307,6 +307,18 @@
                             <span class="text-danger" v-if="errors.temperature">{{ errors.temperature[0] }}</span>
                         </div>
                         <div class="col-md-12 mt-3">
+                            <label for="">Oximeter</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="cursor:pointer;width:40px;">
+                                        <i class="fas fa-file"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Oximeter" v-model="case_add.oximeter" >
+                            </div>
+                            <span class="text-danger" v-if="errors.oximeter">{{ errors.oximeter[0] }}</span>
+                        </div>
+                        <div class="col-md-12 mt-3">
                             <label for="">Initial Findings</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -314,7 +326,7 @@
                                         <i class="fas fa-file"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="(PUM/COUGH/FEVER)" v-model="case_add.initial_findings" >
+                                <input type="text" class="form-control" placeholder="(COUGH/FEVER)" v-model="case_add.initial_findings" >
                             </div>
                             <span class="text-danger" v-if="errors.initial_findings">{{ errors.initial_findings[0] }}</span>
                         </div>
@@ -396,6 +408,7 @@
                 case_add : {
                     case_date : '',
                     temperature : '',
+                    oximeter : '',
                     initial_findings : '',
                     location : '',
                     remarks : '',
@@ -449,6 +462,7 @@
                         let formData = new FormData();
                         formData.append('case_date', v.case_add.case_date ? v.case_add.case_date : "");
                         formData.append('temperature', v.case_add.temperature ? v.case_add.temperature : "");
+                        formData.append('oximeter', v.case_add.oximeter ? v.case_add.oximeter : "");
                         formData.append('initial_findings', v.case_add.initial_findings ? v.case_add.initial_findings : "");
                         formData.append('location', v.case_add.location ? v.case_add.location : "");
                         formData.append('remarks', v.case_add.remarks ? v.case_add.remarks : "");
@@ -468,6 +482,7 @@
                                         v.cases.unshift(response.data.cases);   
                                         v.case_add.case_date = '';
                                         v.case_add.temperature = '';
+                                        v.case_add.oximeter = '';
                                         v.case_add.initial_findings = '';
                                         v.case_add.remarks = '';
                                         v.case_add.location = '';

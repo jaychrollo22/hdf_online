@@ -89,6 +89,7 @@ class CaseLogsController extends Controller
                                                             <li>Employee Name : ".$name."</li>
                                                             <li>Department / Company : ".$department . ' / ' . $company."</li>
                                                             <li>Temperature : ".$request->temperature."</li>
+                                                            <li>Oximeter : ".$request->oximeter."</li>
                                                             <li>Initial Findings : ".$request->initial_findings."</li>
                                                             <li>Remarks : ".$request->remarks."</li>
                                                             <li>Location : ".$request->location."</li>
