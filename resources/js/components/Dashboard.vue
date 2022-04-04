@@ -406,11 +406,10 @@
                 .then(response => { 
                     if(!response.data){
                         Swal.fire({
-                        title: 'Hi! Welcome to HDF Online, would you like to update your Vaccination Details? Just click "Yes" to proceed. Thank you.',
-                        icon: 'question',
-                        showDenyButton: true,
-                        confirmButtonText: `Yes, Proceed`,
-                        denyButtonText: `Dismiss`,
+                        title: 'Hi! Welcome to HDF Online, update your vaccination details to proceed. Thank you.',
+                        icon: 'info',
+                        showDenyButton: false,
+                        confirmButtonText: `Update Now ->`,
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location.href = "/vaccine-logs";

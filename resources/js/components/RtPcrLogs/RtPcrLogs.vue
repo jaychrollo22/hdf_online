@@ -19,7 +19,7 @@
                 </div>
                 <div class="d-flex align-items-center">
                     <a href="#" class="btn btn-transparent-white font-weight-bold py-3 px-6 mr-2" @click="newRtPcrLog">Add New</a>
-                    <a href="/" class="btn btn-md btn-transparent-white font-weight-bold py-3 px-6 mr-2">Back</a>
+                    <a href="/" class="btn btn-md btn-transparent-white font-weight-bold py-3 px-6 mr-2">Generate QR</a>
                 </div>
             </div>
         </div>
