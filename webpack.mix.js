@@ -11,4 +11,4 @@ const mix = require('laravel-mix');
  |
  */
 
- mix.js(['node_modules/popper.js/dist/popper.js','resources/js/app.js'],'public/js/all.js').sourceMaps();
+ mix.js(['node_modules/popper.js/dist/popper.js','resources/js/app.js'],'public/js/all-1.0.7.js').sourceMaps();

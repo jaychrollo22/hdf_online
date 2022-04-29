@@ -107,6 +107,17 @@ class VaccineLogsController extends Controller
     }
 
     public function updateUserVaccinationDetails(Request $request){
+
+        $this->validate($request, [
+            'first_dose_brand' => 'required',
+            'first_dose_date' => 'required',
+            'first_dose_city' => 'required'
+        ],[
+            'first_dose_brand.required' => '1st Dose Brand is required',
+            'first_dose_date.required' => '1st Dose Date is required',
+            'first_dose_city.required' => '1st Dose Location is required',
+        ]);
+
         $user_id = Auth::user()->id;
         $data = $request->all();
         DB::beginTransaction();

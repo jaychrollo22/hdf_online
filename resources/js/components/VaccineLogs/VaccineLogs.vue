@@ -86,7 +86,7 @@
                                     </div>
                                     <input type="text" class="form-control" placeholder="2nd Dose Brand" v-model="user_vaccination_detail.second_dose_brand" >
                                 </div>
-                                <span class="text-danger" v-if="errors.first_dose_brand">{{ errors.first_dose_brand[0] }}</span>
+                                <span class="text-danger" v-if="errors.second_dose_brand">{{ errors.first_dose_brand[0] }}</span>
                             </div>
                             <div class="col-md-4 mt-3" v-if="user_vaccination_detail.is_johnson == 'false'">
                                 <label for="">2nd Dose Date</label>
@@ -359,6 +359,9 @@
                                     }
                                 })
                             }
+                        })
+                        .catch(error => { 
+                            v.errors = error.response.data.errors;
                         })
                     }
                 })
