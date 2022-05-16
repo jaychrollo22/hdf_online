@@ -47,9 +47,7 @@ class VaccineLogsController extends Controller
 
         DB::beginTransaction();
         try{
-
             $data['user_id'] = Auth::user()->id;
-
             if($save = UserVaccineLog::create($data)){
                 DB::commit();
                 $user_vaccine_log = UserVaccineLog::where('id',$save->id)->first();
@@ -58,8 +56,6 @@ class VaccineLogsController extends Controller
                     'user_vaccine_log'=>$user_vaccine_log
                 ];
             }
-
-
         }catch (Exception $e) {
             DB::rollBack();
             return 'error';
@@ -138,15 +134,49 @@ class VaccineLogsController extends Controller
             if($data['id']){
                 $user_vaccination_details = UserVaccinationDetail::where('id',$data['id'])->where('user_id',$user_id)->first();
                 if($user_vaccination_details){
-                    unset($data['id']);
-                    $user_vaccination_details->update($data);
-                    DB::commit();
-                    $user_vaccination_details = UserVaccinationDetail::where('id',$user_vaccination_details->id)->first();
-                    return $response = [
-                        'status'=>'saved',
-                        'user_vaccination_details'=>$user_vaccination_details
-                    ];
+                    if($user_vaccination_details->attachment){
+                        unset($data['id']);
+                        $user_vaccination_details->update($data);
+                        DB::commit();
+                        $user_vaccination_details = UserVaccinationDetail::where('id',$user_vaccination_details->id)->first();
+                        return $response = [
+                            'status'=>'saved',
+                            'user_vaccination_details'=>$user_vaccination_details
+                        ];
+                    }else{
+                        if(isset($request->attachment)){
+                            unset($data['id']);
+                            $user_vaccination_details->update($data);
+                            DB::commit();
+                            $user_vaccination_details = UserVaccinationDetail::where('id',$user_vaccination_details->id)->first();
+                            return $response = [
+                                'status'=>'saved',
+                                'user_vaccination_details'=>$user_vaccination_details
+                            ];
+                        }else{
+                            return $response = [
+                                'status'=>'error_attachment'
+                            ];
+                        }
+                    }
                 }else{
+                    if(isset($request->attachment)){
+                        unset($data['id']);
+                        UserVaccinationDetail::create($data);
+                        DB::commit();
+                        $user_vaccination_details = UserVaccinationDetail::where('user_id',$user_id)->first();
+                        return $response = [
+                            'status'=>'saved',
+                            'user_vaccination_details'=>$user_vaccination_details
+                        ];
+                    }else{
+                        return $response = [
+                            'status'=>'error_attachment'
+                        ];
+                    }
+                }
+            }else{
+                if(isset($request->attachment)){
                     unset($data['id']);
                     UserVaccinationDetail::create($data);
                     DB::commit();
@@ -155,16 +185,11 @@ class VaccineLogsController extends Controller
                         'status'=>'saved',
                         'user_vaccination_details'=>$user_vaccination_details
                     ];
+                }else{
+                    return $response = [
+                        'status'=>'error_attachment'
+                    ]; 
                 }
-            }else{
-                unset($data['id']);
-                UserVaccinationDetail::create($data);
-                DB::commit();
-                $user_vaccination_details = UserVaccinationDetail::where('user_id',$user_id)->first();
-                return $response = [
-                    'status'=>'saved',
-                    'user_vaccination_details'=>$user_vaccination_details
-                ];
             }
         }catch (Exception $e) {
             DB::rollBack();

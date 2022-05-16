@@ -330,7 +330,7 @@
                         formData.append('is_johnson', v.user_vaccination_detail.is_johnson ? v.user_vaccination_detail.is_johnson : "false");    
                         formData.append('first_dose_brand', v.user_vaccination_detail.first_dose_brand ? v.user_vaccination_detail.first_dose_brand : "");    
                         formData.append('first_dose_date', v.user_vaccination_detail.first_dose_date ? v.user_vaccination_detail.first_dose_date : "");    
-                        formData.append('first_dose_city', v.user_vaccination_detail.first_dose_city ? v.user_vaccination_detail.first_dose_city : "");  
+                        formData.append('first_dose_city', v.user_vaccination_detail.first_dose_city ? v.user_vaccination_detail.first_dose_city : ""); 
                         formData.append('attachment', v.user_vaccination_detail.attachment ? v.user_vaccination_detail.attachment : "");  
                         
                         if(v.user_vaccination_detail.is_johnson == 'true'){
@@ -358,6 +358,8 @@
                                         v.user_vaccination_detail = response.data.user_vaccination_details;
                                     }
                                 })
+                            }else if(response.data.status == 'error_attachment'){
+                                alert('Upload Vaccine Attachment');
                             }
                         })
                         .catch(error => { 
