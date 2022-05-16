@@ -359,7 +359,7 @@
                                     }
                                 })
                             }else if(response.data.status == 'error_attachment'){
-                                alert('Upload Vaccine Attachment');
+                                alert('Upload Vaccine Card Attachment');
                             }
                         })
                         .catch(error => { 
